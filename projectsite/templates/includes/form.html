@@ -9,17 +9,16 @@
 {% endif %}
 
 {% for field in form %}
-
 <div class="field item form-group">
     <label>{{ field.label_tag }}</label>
- <div class="form-group">
-    {% render_field field class="form-control" %}
+    <div class="form-group">
+        {% render_field field class="form-control" %}
     </div>
-
-    {% for error in field.errors &}
-     <div class="invalid-feedback">
-        {{ error }}
-     </div>
+    {% for error in field.errors %}
+        <div class="invalid-feedback">
+            {{ error }}
+        </div>
     {% endfor %}
-
 </div>
+{% endfor %}
+
