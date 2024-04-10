@@ -45,3 +45,10 @@ class OrganizationMemberCreateView(CreateView):
     form_class = OrgMemberForm
     template_name = 'org_mem_add.html'
     success_url = reverse_lazy('organization-mem-list')
+
+
+class OrganizationMemberUpdateView(UpdateView):
+    model = OrgMember
+    form_class = OrgMemberForm
+    template_name = 'org_mem_edit.html'
+    success_url = reverse_lazy('organization-mem-list')
