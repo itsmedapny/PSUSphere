@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">List of College</div>
+                        <div class="card-title">List of Program</div>
                         <div class="card-category">Page Subtitle</div>
                     </div>
                     <div class="card-body">
@@ -46,6 +46,7 @@
                                     <td>{{ object.college }}</td>
                                     <td>
                                         <a href="program_list/{{ object.id}}">Edit</a>
+                                        <a href="program_list/{{ object.id }}/delete" class="text-danger">Delete</a>
                                     </td>
                                 </tr>
                                 {% empty %}
