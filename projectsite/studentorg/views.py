@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from studentorg.models import Organization, OrgMember
-from studentorg.forms import OrganizationForm, OrgMemberForm
+from studentorg.models import Organization, OrgMember, Student
+from studentorg.forms import OrganizationForm, OrgMemberForm, StudentForm
 from django.urls import reverse_lazy
 
 class HomePageView(ListView):
@@ -59,4 +59,8 @@ class OrganizationMemberDeleteView(DeleteView):
     template_name = 'org_mem_del.html'
     success_url = reverse_lazy('organization-mem-list')
 
-
+class StudentList(ListView):
+    model = Student
+    context_object_name = 'home'
+    template_name = 'student_list.html'
+    paginate_by = 5 
