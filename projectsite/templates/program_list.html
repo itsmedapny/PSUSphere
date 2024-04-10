@@ -8,10 +8,29 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">List of Programs</div>
+                        <div class="card-title">List of College</div>
                         <div class="card-category">Page Subtitle</div>
                     </div>
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form class="navbar-left navbar-form nav-search mr-md-3" action="">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="search ..." class="form-control" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="la la-search search-icon"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="pull-right">
+                                    <a href="{% url 'program-add' %}" class="btn btn-success btn-rounded">Add Program</a>
+                                </div>
+                            </div>
+                        </div>
                         <table class="table table-striped mt-3">
                             <thead>
                                 <tr>
@@ -22,7 +41,7 @@
                             <tbody>
                                 {% for object in object_list %}
                                 <tr>
-                                    <td>{{ object.prog_name}}</td>
+                                    <td>{{ object.prog_name }}</td>
                                     <td>{{ object.college }}</td>
                                 </tr>
                                 {% endfor %}
