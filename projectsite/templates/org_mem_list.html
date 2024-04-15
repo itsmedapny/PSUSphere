@@ -8,15 +8,15 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">List of Organization Member</div>
+                        <div class="card-title">List of Organization Members</div>
                         <div class="card-category">Page Subtitle</div>
                     </div>
                     <br />
                     <div class="col-md-12 row">
                         <div class="col-md-6">
-                            <form class="navbar-left navbar-form nav-search mr-md-3" action="">
+                            <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'organization-mem-list' %}">
                                 <div class="input-group">
-                                    <input type="text" placeholder="search ..." class="form-control" />
+                                    <input type="text" placeholder="search ..." class="form-control" name="q"/>
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-search search-icon"></i>
