@@ -1,6 +1,6 @@
 # DJANGO and PYTHON PROJECT 
 ## Simple Description of the project
-### Django first: Starting Django (04 - 02 - 24)
+### Django First: Starting Django (04 - 02 - 24)
 This project involved django from: <br>
 1. Setting it up: Create virtual environment, repo, clone, and activate it. 
 
@@ -17,7 +17,7 @@ This project involved django from: <br>
 - Student
 - Organization Member
 
-6. Display list in Django Admin (refractor admin)
+6. Display list in Django Admin (refractor admin).
 
 7. Creating SuperUser account
 
@@ -25,7 +25,7 @@ This project involved django from: <br>
 
 Follow these steps to successfully start your Django activity. 
 
-### Django Deployment: Static Files and home page (04 - 05 - 24)
+### Django Deployment: Static Files and Home Page (04 - 05 - 24)
 
 This project involved django from: 
 
@@ -44,6 +44,40 @@ This project involved django from:
 7. Run the Server: Start the Django development server with python manage.py runserver or through the PythonAnywhere dashboard.
 
 Follow these steps to successfully deploy your Django application on PythonAnywhere.
+
+### Django Deployment: Django Views (04 - 08 - 24)
+
+1. Load Profile Image: Add image for all profile.
+
+2. Menu: Modify menu to setup the sidebar
+
+3. Organization List View, Create View, Update View, Delete View.
+
+4. Organization Member List View, Create View, Update View, Delete View.
+
+5. Student List View, Create View, Update View, Delete View.
+
+6. College List View, Create View, Update View, Delete View.
+
+7. Program List View, Create View, Update View, Delete View.
+
+Follow these steps to successfully modify your PSUSphere.
+
+### Django Last: Search, Login, and Logout Functionality (04 - 15 - 24)
+
+1. Search Feature of Organization List
+
+2. Search Feature of Organization Member List
+
+3. Search Feature of Students
+
+4. Search Feature of College
+
+5. Search Feature of Program
+
+6. Login Functionality
+
+7. Logout Functionality
 
 ## Authors of the Project
 
