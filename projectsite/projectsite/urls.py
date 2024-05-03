@@ -20,6 +20,8 @@ from studentorg.views import HomePageView, OrganizationList, OrganizationCreateV
 from studentorg import views
 from django.contrib.auth import views as auth_views
 
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.HomePageView.as_view(), name='home'),
@@ -45,4 +47,5 @@ urlpatterns = [
     path('program_list/<pk>/delete', ProgramDeleteView.as_view(), name='program-delete'),
     re_path(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     re_path(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
+    path('index/', views.index, name='index'),
 ]
