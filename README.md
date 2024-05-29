@@ -47,6 +47,8 @@ Follow these steps to successfully deploy your Django application on PythonAnywh
 
 ### Django Deployment: Django Views (04 - 08 - 24)
 
+This project involved django from: 
+
 1. Load Profile Image: Add image for all profile.
 
 2. Menu: Modify menu to setup the sidebar
@@ -65,6 +67,8 @@ Follow these steps to successfully modify your PSUSphere.
 
 ### Django Last: Search, Login, and Logout Functionality (04 - 15 - 24)
 
+This project involved django from:
+
 1. Search Feature of Organization List
 
 2. Search Feature of Organization Member List
@@ -78,6 +82,22 @@ Follow these steps to successfully modify your PSUSphere.
 6. Login Functionality
 
 7. Logout Functionality
+
+### Django Chart: Consists of Six Different Charts (04 - 20 - 24)
+
+This project involved django from:
+
+1. Top 5 Organizations with the Most Members
+
+2. Top Colleges with the Most Program
+
+3. Top Programs with Lots of Students Enrolled
+
+4. Top Colleges with the Most Organizations Offer
+
+5. Less Students Enrolled in College Program
+
+6. List of Colleges in PALSU
 
 ## Authors of the Project
 
