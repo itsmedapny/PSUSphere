@@ -250,7 +250,7 @@ def index(request):
     organizations = Organization.objects.all()
 
     #render
-    return render(request, 'index.html', {'labels': labels, 'data': data, 'colleges': colleges, 'num_programs': num_programs, 'programs': programs, 'num_students': num_students, 'college_names': college_names, 'num_organizations': num_organizations, 'program': programx,'less_students': less_students, 'organizations': organizations })
+    return render(request, 'index.html', {'labels': labels, 'data': data, 'colleges': colleges, 'num_programs': num_programs, 'programs': programs, 'num_students': num_students, 'college_names': college_names, 'num_organizations': num_organizations, 'programx': programx,'less_students': less_students, 'organizations': organizations })
 
 
 
