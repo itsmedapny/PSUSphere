@@ -248,73 +248,72 @@
 
 
     // List of Colleges in PALSU (Pie Chart)
-    var collegeNames = [
-    "CEAT", "CTE", "CBA", "CAH", "CS", "CHTM", "CNHS", "CCJE"
-];
+    var collegeNames = {{ all_college_names|safe }};
+    var studentCounts = {{ student_counts|safe }};
 
-var allCollegeData = {
-    labels: collegeNames,
-    datasets: [{
-        label: 'PALSU Colleges',
-        data: new Array(collegeNames.length).fill(1),
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.3)',
-            'rgba(54, 162, 235, 0.3)',
-            'rgba(255, 205, 86, 0.3)',
-            'rgba(75, 192, 192, 0.3)',
-            'rgba(153, 102, 255, 0.3)',
-            'rgba(255, 159, 64, 0.3)',
-            'rgba(255, 0, 255, 0.2)',
-            'rgba(0, 255, 255, 0.3)'
-        ],
-        borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 205, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-            'rgba(255, 0, 255, 1)',
-            'rgba(0, 255, 255, 1)'
-        ],
-        borderWidth: 1,
-        yAxisID: 'y-axis-1',
-    }, {
-        label: 'Students',
-        type: 'line',
-        data: [5, 3, 8, 6, 9, 5, 3, 10],
-        fill: false,
-        borderColor: 'rgba(75, 192, 192, 1)',
-        backgroundColor: 'rgba(75, 192, 192, 0.1)',
-        yAxisID: 'y-axis-2'
-    }]
-};
-
-var allCollegeConfig = {
-    type: 'bar',
-    data: allCollegeData,
-    options: {
-        scales: {
-            yAxes: [{
-                type: 'linear',
-                display: true,
-                position: 'left',
-                id: 'y-axis-1',
+    var allCollegeData = {
+            labels: collegeNames,
+            datasets: [{
+                label: 'PALSU Colleges',
+                data: new Array(collegeNames.length).fill(1),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.3)',
+                    'rgba(54, 162, 235, 0.3)',
+                    'rgba(255, 205, 86, 0.3)',
+                    'rgba(75, 192, 192, 0.3)',
+                    'rgba(153, 102, 255, 0.3)',
+                    'rgba(255, 159, 64, 0.3)',
+                    'rgba(255, 0, 255, 0.2)',
+                    'rgba(0, 255, 255, 0.3)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 0, 255, 1)',
+                    'rgba(0, 255, 255, 1)'
+                ],
+                borderWidth: 1,
+                yAxisID: 'y-axis-1',
             }, {
-                type: 'linear',
-                display: true,
-                position: 'right',
-                id: 'y-axis-2',
-                gridLines: {
-                    drawOnChartArea: false,
-                },
-            }],
-        },
-    },
-};
+                label: 'Students',
+                type: 'line',
+                data: studentCounts,
+                fill: false,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                yAxisID: 'y-axis-2'
+            }]
+        };
 
-var allCollegeCtx = document.getElementById('allcollege-chart').getContext('2d');
-new Chart(allCollegeCtx, allCollegeConfig);
+        var allCollegeConfig = {
+            type: 'bar',
+            data: allCollegeData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-axis-1',
+                    }, {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        id: 'y-axis-2',
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                    }],
+                },
+            },
+        };
+
+        var allCollegeCtx = document.getElementById('allcollege-chart').getContext('2d');
+        new Chart(allCollegeCtx, allCollegeConfig);
 
 
 </script>

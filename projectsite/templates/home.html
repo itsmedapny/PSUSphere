@@ -1,18 +1,320 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<div class="content">
-    <div class="container-fluid">
-        <h4 class="page-tittle">Home</h4>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-tittle">Page Title</div>
-                        <div class="card-category">Page Subtitle</div>
-                    </div>
-                    <div class="card-body">Hello, World</div>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card" style="margin-top: 80px; margin-left: 15px; margin-right: 3px;"> 
+            <div class="card-body">
+                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
+                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">Top 5 Organizations with the Most Members</p> 
+                    <canvas id="pie-chart" width="400" height="275"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card" style="margin-top: 80px; margin-left: 7px; margin-right: 15PX;"> 
+            <div class="card-body">
+                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
+                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">Top Colleges with the Most Program</p> 
+                    <canvas id="colleges-chart" width="400" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card" style="margin-top: 10px; margin-left: 15px;"> 
+            <div class="card-body">
+                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
+                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">Top Programs with Lots of Students Enrolled</p> 
+                    <canvas id="program-chart" width="400" height="275"></canvas>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card" style="margin-top: 10px; margin-left: 7px; margin-right: 15PX;"> 
+            <div class="card-body">
+                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
+                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">Top Colleges with the Most Organizations Offer</p> 
+                    <canvas id="organizations-chart" width="430" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card" style="margin-top: 10px; margin-left: 15px;"> 
+            <div class="card-body">
+                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
+                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">Less Students Enrolled in College Program</p> 
+                    <canvas id="less-chart" width="200" height="150"></canvas>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card" style="margin-top: 10px; margin-left: 7px; margin-right: 15PX;"> 
+            <div class="card-body">
+                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
+                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">List of Colleges in PALSU</p> 
+                    <canvas id="allcollege-chart" width="400" height="250"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+<script>
+    // Organization Chart (Line Chart)
+    var orgLabels = {{ labels | safe }};
+    var orgData = {{ data | safe }};
+
+    var orgCtx = document.getElementById('pie-chart').getContext('2d');
+    var orgChart = new Chart(orgCtx, {
+        type: 'line',
+        data: {
+            labels: orgLabels,
+            datasets: [{
+                label: 'Number of Members',
+                data: orgData,
+                fill: false,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    // Colleges with Most Programs (Bar Chart)
+    var colleges = {{ colleges | safe }};
+    var num_programs = {{ num_programs | safe }};
+
+    var collegesCtx = document.getElementById('colleges-chart').getContext('2d');
+    var collegesChart = new Chart(collegesCtx, {
+        type: 'bar',
+        data: {
+            labels: colleges,
+            datasets: [{
+                label: 'Number of Programs',
+                data: num_programs,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    // Programs with Lots of Students Enrolled (Polar Area Chart)
+    var programs = {{ programs | safe }};
+    var numStudents = {{ num_students | safe }};
+
+    var programCtx = document.getElementById('program-chart').getContext('2d');
+    var studentChart = new Chart(programCtx, {
+        type: 'polarArea',
+        data: {
+            labels: programs,
+            datasets: [{
+                label: 'Number of Students',
+                data: numStudents,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    // Top Colleges with Most Organizations (Radar Chart)
+    var collegeNames = {{ college_names | safe }};
+    var numOrganizations = {{ num_organizations | safe }};
+
+    var organizationsCtx = document.getElementById('organizations-chart').getContext('2d');
+    var organizationsChart = new Chart(organizationsCtx, {
+        type: 'radar',
+        data: {
+            labels: collegeNames,
+            datasets: [{
+                label: 'Number of Organizations',
+                data: numOrganizations,
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scale: {
+                ticks: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // List of Less Students in PALSU (Pie Chart)
+    var programx = {{ programx | safe }};
+    var less_students = {{ less_students | safe }};
+
+    var collegesCtx = document.getElementById('less-chart').getContext('2d');
+    var collegesChart = new Chart(collegesCtx, {
+        type: 'horizontalBar', // Change type to 'horizontalBar'
+        data: {
+            labels: programx, // Set programx as labels for x-axis
+            datasets: [{
+                label: 'Number of Students',
+                data: less_students, // y value from less_students
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+    // List of Colleges in PALSU (Pie Chart)
+    var collegeNames = {{ all_college_names|safe }};
+    var studentCounts = {{ student_counts|safe }};
+
+    var allCollegeData = {
+            labels: collegeNames,
+            datasets: [{
+                label: 'PALSU Colleges',
+                data: new Array(collegeNames.length).fill(1),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.3)',
+                    'rgba(54, 162, 235, 0.3)',
+                    'rgba(255, 205, 86, 0.3)',
+                    'rgba(75, 192, 192, 0.3)',
+                    'rgba(153, 102, 255, 0.3)',
+                    'rgba(255, 159, 64, 0.3)',
+                    'rgba(255, 0, 255, 0.2)',
+                    'rgba(0, 255, 255, 0.3)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 0, 255, 1)',
+                    'rgba(0, 255, 255, 1)'
+                ],
+                borderWidth: 1,
+                yAxisID: 'y-axis-1',
+            }, {
+                label: 'Students',
+                type: 'line',
+                data: studentCounts,
+                fill: false,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                yAxisID: 'y-axis-2'
+            }]
+        };
+
+        var allCollegeConfig = {
+            type: 'bar',
+            data: allCollegeData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-axis-1',
+                    }, {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        id: 'y-axis-2',
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                    }],
+                },
+            },
+        };
+
+        var allCollegeCtx = document.getElementById('allcollege-chart').getContext('2d');
+        new Chart(allCollegeCtx, allCollegeConfig);
+
+
+</script>
 {% endblock %}

@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from studentorg.models import Organization, OrgMember, Student, College, Program
@@ -12,12 +10,9 @@ from django.db.models.query import QuerySet
 from django.db.models import Q
 from django.utils.dateparse import parse_date
 from django.shortcuts import render
+from django.db.models import Count, F
 
 @method_decorator(login_required, name="dispatch")
-class HomePageView(ListView):
-    model = Organization
-    context_object_name = 'home'
-    template_name = "home.html"
 
 class OrganizationList(ListView):
     model = Organization
@@ -189,22 +184,24 @@ class ProgramDeleteView(DeleteView):
     success_url = reverse_lazy('program-list')
 
 
-from django.shortcuts import render
-from .models import OrgMember, Program, Student, College
-from django.db.models import Count, F
+class HomePageView(ListView):
+    model = Organization
+    context_object_name = 'home'
+    template_name = "index.html"
+
 
 def index(request):
-    #Chart1
+    # Top 5 Organizations by Number of Members
     org_members_counts = OrgMember.objects.values('organization__name').annotate(num_students=Count('student')).order_by('-num_students')[:5]
     labels = [org_member['organization__name'] for org_member in org_members_counts]
     data = [org_member['num_students'] for org_member in org_members_counts]
 
-    #Chart2
+    # Top 5 Colleges by Number of Programs
     top_colleges = Program.objects.values(college_name=F('college__college_name')).annotate(program_count=Count('prog_name')).order_by('-program_count')[:5]
     colleges = []
     for college in top_colleges:
         college_name = college['college_name']
-        if college_name == 'College of Sciences': 
+        if college_name == 'College of Sciences':
             colleges.append('CS')
         elif college_name == 'College of Teacher Education':
             colleges.append('CTE')
@@ -216,17 +213,17 @@ def index(request):
             colleges.append('CEAT')
     num_programs = [college['program_count'] for college in top_colleges]
 
-    #Chart3
+    # Top 5 Programs by Number of Students
     student_counts = Student.objects.values('program__prog_name').annotate(num_students=Count('student_id')).order_by('-num_students')[:5]
     programs = [student['program__prog_name'] for student in student_counts]
     num_students = [student['num_students'] for student in student_counts]
 
-    #Chart4
+    # Number of Organizations per College
     organizations_per_college = Organization.objects.values('college__college_name').annotate(num_organizations=Count('id'))
     college_names = [entry['college__college_name'] for entry in organizations_per_college]
     num_organizations = [entry['num_organizations'] for entry in organizations_per_college]
 
-    #Chart5
+    # Programs with the Least Number of Students
     student_less = Student.objects.values('program__prog_name').annotate(less_students=Count('student_id')).order_by('less_students')[:5]
     program_names = [student['program__prog_name'] for student in student_less]
     programx = []
@@ -242,34 +239,33 @@ def index(request):
         elif program_name == 'Bachelor of Secondary Education':
             programx.append('BSE')
         else:
-            programx.append(program_name)  
+            programx.append(program_name)
     less_students = [student['less_students'] for student in student_less]
 
-    #Chart6
+    # Number of Students per College
+    college_aliases = {
+            'College of Sciences': 'CS',
+            'College of Teacher Education': 'CTE',
+            'College of Arts and Humanities': 'CAH',
+            'College of Business and Accountancy': 'CBA',
+            'College of Engineering Architecture and Technology': 'CEAT',
+            'College of Hospitality Management and Tourism': 'CHTM',
+            'College of Nursing and Health Sciences': 'CNHS',
+            'College of Criminal Justice Education': 'CCJE',
+        }
 
-    organizations = Organization.objects.all()
-
-    #render
-    return render(request, 'index.html', {'labels': labels, 'data': data, 'colleges': colleges, 'num_programs': num_programs, 'programs': programs, 'num_students': num_students, 'college_names': college_names, 'num_organizations': num_organizations, 'programx': programx,'less_students': less_students, 'organizations': organizations })
-
-
-
-    
-    
-
-
-
-
-
-
+    all_colleges = College.objects.all()
+    all_college_names = [college_aliases.get(college.college_name, college.college_name) for college in all_colleges]
+    student_counts = [Student.objects.filter(program__college=college).count() for college in all_colleges]
 
 
+    context = {
+        'labels': labels, 'data': data,
+        'colleges': colleges, 'num_programs': num_programs,
+        'programs': programs, 'num_students': num_students,
+        'college_names': college_names, 'num_organizations': num_organizations,
+        'programx': programx, 'less_students': less_students,
+        'all_college_names': all_college_names, 'student_counts': student_counts,
+    }
 
-
-
-
-
-
-
-
-
+    return render(request, 'index.html', context)
