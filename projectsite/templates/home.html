@@ -1,63 +1,65 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="row">
-    <div class="col-md-6">
-        <div class="card" style="margin-top: 80px; margin-left: 15px; margin-right: 3px;"> 
-            <div class="card-body">
-                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
-                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">Top 5 Organizations with the Most Members</p> 
-                    <canvas id="pie-chart" width="400" height="275"></canvas>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 mb-4" style="margin-top: 80px;">
+            <div class="card h-100"> 
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height: 450px; width: 100%;"> 
+                        <p class="text-center font-weight-bold">Top 5 Organizations with the Most Members</p> 
+                        <canvas id="pie-chart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card" style="margin-top: 80px; margin-left: 7px; margin-right: 15PX;"> 
-            <div class="card-body">
-                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
-                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">Top Colleges with the Most Program</p> 
-                    <canvas id="colleges-chart" width="400" height="250"></canvas>
+        <div class="col-md-6 mb-4" style="margin-top: 80px;">
+            <div class="card h-100"> 
+                <div class="card-body" >
+                    <div class="chart-container" style="position: relative; height: 450px; width: 100%;"> 
+                        <p class="text-center font-weight-bold">Top Colleges with the Most Program</p> 
+                        <canvas id="colleges-chart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card" style="margin-top: 10px; margin-left: 15px;"> 
-            <div class="card-body">
-                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
-                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">Top Programs with Lots of Students Enrolled</p> 
-                    <canvas id="program-chart" width="400" height="275"></canvas>
-                </div>                
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card" style="margin-top: 10px; margin-left: 7px; margin-right: 15PX;"> 
-            <div class="card-body">
-                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
-                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">Top Colleges with the Most Organizations Offer</p> 
-                    <canvas id="organizations-chart" width="430" height="250"></canvas>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100"> 
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height: 450px; width: 100%;"> 
+                        <p class="text-center font-weight-bold">Top Programs with Lots of Students Enrolled</p> 
+                        <canvas id="program-chart"></canvas>
+                    </div>                
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card" style="margin-top: 10px; margin-left: 15px;"> 
-            <div class="card-body">
-                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
-                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">Less Students Enrolled in College Program</p> 
-                    <canvas id="less-chart" width="200" height="150"></canvas>
-                </div>                
+        <div class="col-md-6 mb-4">
+            <div class="card h-100"> 
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height: 450px; width: 100%;"> 
+                        <p class="text-center font-weight-bold">Top Colleges with the Most Organizations Offer</p> 
+                        <canvas id="organizations-chart"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card" style="margin-top: 10px; margin-left: 7px; margin-right: 15PX;"> 
-            <div class="card-body">
-                <div class="chart-container" style="position: relative; height:450px; width:100%;"> 
-                    <p style="text-align: center; font-size: 18px; margin-bottom: 10px;">List of Colleges in PALSU</p> 
-                    <canvas id="allcollege-chart" width="400" height="250"></canvas>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100"> 
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height: 450px; width: 100%;"> 
+                        <p class="text-center font-weight-bold">Less Students Enrolled in College Program</p> 
+                        <canvas id="less-chart"></canvas>
+                    </div>                
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100"> 
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height: 450px; width: 100%;"> 
+                        <p class="text-center font-weight-bold">List of Colleges in PALSU</p> 
+                        <canvas id="allcollege-chart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,6 +87,8 @@
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 yAxes: [{
                     ticks: {
@@ -125,6 +129,8 @@
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 yAxes: [{
                     ticks: {
@@ -165,6 +171,8 @@
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 yAxes: [{
                     ticks: {
@@ -193,6 +201,8 @@
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scale: {
                 ticks: {
                     beginAtZero: true
@@ -201,18 +211,18 @@
         }
     });
 
-    // List of Less Students in PALSU (Pie Chart)
+    // List of Less Students in PALSU (Horizontal Bar Chart)
     var programx = {{ programx | safe }};
     var less_students = {{ less_students | safe }};
 
-    var collegesCtx = document.getElementById('less-chart').getContext('2d');
-    var collegesChart = new Chart(collegesCtx, {
-        type: 'horizontalBar', // Change type to 'horizontalBar'
+    var lessCtx = document.getElementById('less-chart').getContext('2d');
+    var lessChart = new Chart(lessCtx, {
+        type: 'horizontalBar',
         data: {
-            labels: programx, // Set programx as labels for x-axis
+            labels: programx,
             datasets: [{
                 label: 'Number of Students',
-                data: less_students, // y value from less_students
+                data: less_students,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -231,6 +241,8 @@
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 xAxes: [{
                     ticks: {
@@ -246,75 +258,74 @@
         }
     });
 
-
-    // List of Colleges in PALSU (Pie Chart)
-    var collegeNames = {{ all_college_names|safe }};
-    var studentCounts = {{ student_counts|safe }};
+    // List of Colleges in PALSU (Bar and Line Chart)
+    var collegeNames = {{ all_college_names | safe }};
+    var studentCounts = {{ student_counts | safe }};
 
     var allCollegeData = {
-            labels: collegeNames,
-            datasets: [{
-                label: 'PALSU Colleges',
-                data: new Array(collegeNames.length).fill(1),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.3)',
-                    'rgba(54, 162, 235, 0.3)',
-                    'rgba(255, 205, 86, 0.3)',
-                    'rgba(75, 192, 192, 0.3)',
-                    'rgba(153, 102, 255, 0.3)',
-                    'rgba(255, 159, 64, 0.3)',
-                    'rgba(255, 0, 255, 0.2)',
-                    'rgba(0, 255, 255, 0.3)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 205, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 0, 255, 1)',
-                    'rgba(0, 255, 255, 1)'
-                ],
-                borderWidth: 1,
-                yAxisID: 'y-axis-1',
-            }, {
-                label: 'Students',
-                type: 'line',
-                data: studentCounts,
-                fill: false,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.1)',
-                yAxisID: 'y-axis-2'
-            }]
-        };
+        labels: collegeNames,
+        datasets: [{
+            label: 'PALSU Colleges',
+            data: new Array(collegeNames.length).fill(1),
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.3)',
+                'rgba(54, 162, 235, 0.3)',
+                'rgba(255, 205, 86, 0.3)',
+                'rgba(75, 192, 192, 0.3)',
+                'rgba(153, 102, 255, 0.3)',
+                'rgba(255, 159, 64, 0.3)',
+                'rgba(255, 0, 255, 0.2)',
+                'rgba(0, 255, 255, 0.3)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 205, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 0, 255, 1)',
+                'rgba(0, 255, 255, 1)'
+            ],
+            borderWidth: 1,
+            yAxisID: 'y-axis-1',
+        }, {
+            label: 'Students',
+            type: 'line',
+            data: studentCounts,
+            fill: false,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.1)',
+            yAxisID: 'y-axis-2'
+        }]
+    };
 
-        var allCollegeConfig = {
-            type: 'bar',
-            data: allCollegeData,
-            options: {
-                scales: {
-                    yAxes: [{
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        id: 'y-axis-1',
-                    }, {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        id: 'y-axis-2',
-                        gridLines: {
-                            drawOnChartArea: false,
-                        },
-                    }],
-                },
+    var allCollegeConfig = {
+        type: 'bar',
+        data: allCollegeData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    id: 'y-axis-1',
+                }, {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    id: 'y-axis-2',
+                    gridLines: {
+                        drawOnChartArea: false,
+                    },
+                }],
             },
-        };
+        },
+    };
 
-        var allCollegeCtx = document.getElementById('allcollege-chart').getContext('2d');
-        new Chart(allCollegeCtx, allCollegeConfig);
-
-
+    var allCollegeCtx = document.getElementById('allcollege-chart').getContext('2d');
+    new Chart(allCollegeCtx, allCollegeConfig);
 </script>
 {% endblock %}
